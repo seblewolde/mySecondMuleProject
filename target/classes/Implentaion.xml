@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:batch="http://www.mulesoft.org/schema/mule/batch"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="875bedb7-b8d4-4a2e-af46-21fd6723caab" >
+		<http:request-connection protocol="HTTPS" host="api.covid19api.com" port="443" />
+	</http:request-config>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="3b9ccbf7-6a49-4e5e-aac5-10e59566bc6e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="5ec0a000-508e-4346-a9cb-f3bcb9a71ffe" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="cvFlow" doc:id="b496beab-5132-4aef-bd72-2dfe5bd92dbb" >
+		<http:listener doc:name="Listener" doc:id="58318e86-b9f1-4c09-81b7-5b3188c12aac" config-ref="HTTP_Listener_config1" path="/covid"/>
+		<http:request method="GET" doc:name="Call Covid19 virus ws" doc:id="206948c2-eee0-478c-839c-440e57c53fce" config-ref="HTTP_Request_configuration" path="#['/total/dayone/country/' ++  vars.CountryName]"/>
+	</flow>
+</mule>
