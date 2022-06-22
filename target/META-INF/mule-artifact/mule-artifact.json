@@ -1,0 +1,29 @@
+{
+  "configs": [
+    "Interface.xml",
+    "Implentaion.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:cv:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.2.2",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "api/covid19.raml",
+        "api/dataTypes/caronaDT.raml",
+        "api/Examples/caronaEx.raml",
+        "Implentaion.xml",
+        "Interface.xml",
+        "log4j2.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

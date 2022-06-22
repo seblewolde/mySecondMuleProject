@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Covid19
+
+types:
+  carnoa: !include dataTypes/caronaDT.raml
+
+/Caronavirus:
+  /{CountryName}:
+    description: Return caronavirus information on basis of country name .. Done by Dr. Hassen
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                ex: !include Examples/caronaEx.raml
